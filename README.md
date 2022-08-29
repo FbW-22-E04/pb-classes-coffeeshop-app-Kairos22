@@ -13,11 +13,10 @@ and **seven methods**:
 3.  **listOrders**: returns the list of **orders** taken, otherwise, an **empty** array.
 4.  **dueAmount**: returns the total amount due for the **orders** taken.
 5.  **cheapestItem**: returns the **name** of the cheapest item on the menu.
-6.  **drinksOnly**: returns only the _item_  **names** of _type_  **drink** from the menu.
-7.  **foodOnly**: returns only the _item_  **names** of _type_  **food** from the menu.
+6.  **drinksOnly**: returns only the _item_ **names** of _type_ **drink** from the menu.
+7.  **foodOnly**: returns only the _item_ **names** of _type_ **food** from the menu.
 
 **IMPORTANT**: Orders are fulfilled in a **FIFO** (first-in, first-out) order.
-
 
 ### Examples
 
