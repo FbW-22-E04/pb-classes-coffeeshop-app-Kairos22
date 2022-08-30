@@ -1,62 +1,131 @@
 class CoffeeShop {
-	constructor (name, menu, orders) {
-		this.name = name
-		this.menu = menu
-		this.orders = orders
-	}
-	addItem(item) {
-		this.menu.push(item);
-	}
-	addOrder(product){
-     const idx = this.menu.findIndex((item) => item.item === product);
-	 if (idx === -1){
-		console.log("This item is currently unavailable!");
-	 } else {
-		this.orders.push(product);
-		console.log(`Order added!`);
-		console.log(this.orders);
-	 }
+
+  constructor(name, menu, orders) {
+
+    this.name = name;
+    this.menu = menu;
+    this.orders = orders;
+  }
 
 
-	}
+  addOrder(name) {
 
-	fulfillOrder(){
-		console.log(this.orders);
-		if (this.orders.length !== 0) {
-			console.log(`The ${this.orders.shift()} is ready!`);
-			console.log(this.orders);
-		}else {
-			console.log(`All orders have been fulfilled!`);
+	const result = this.menu.filter((el) => el.name === name);
+
+	if(result .length > 0){
+
+		this.orders.push(name)}
+
+	else{
+
+	console.log("This item is currently unavailable!");
 		}
 	}
-	listOrders(){
-		if (this.orders.length !== 0){
-			console.log(this.orders);
+  
 
-		}else {
-			console.log([]);
-		}
-		
+
+  fulfillOrder() {
+
+    if (!this.orders.length > 0) {	
+
+ 	console.log(`The ${this.orders[0]} is ready`)
+
+	this.orders.shift()
+	
+    } 
+
+	 else{console.log("All orders have been fulfilled")
 	}
+    
+  }
+
+
+listOrders(){
+
+	console.log('Orders:', this.orders);
 
 }
 
-const shop1 = new CoffeeShop ("Rudy's Famous Coffee", [{item: "English Tee", type: "drink", price: 2},
-{item: "Hot Cappuccino", type: "drink", price: 3},
-{item: "Chees Cake", type: "food", price: 5},
-{item: "Pan Cakes", type: "food", price: 6},
-{item: "Eggs", type: "food", price: 4},
-{item: "Esspreso", type: "drink", price: 1}],[]);
+dueAmount(){
 
-console.log(shop1);
-shop1.addOrder("Esspreso");
-shop1.addOrder("Eggs");
-shop1.addOrder("Pan Cake")
-shop1.addOrder("Chees Cake")
-shop1.fulfillOrder();
-shop1.fulfillOrder();
-shop1.listOrders();
+	let total = 0;
+	this.orders.forEach(item => {
+		const price = this.menu.find(el => el.name === item).price
+		console.log("dueAmount-price", price);
 
-// const arr = [1, 2, 3, 4]
-// console.log(arr.shift());
-// console.log(arr);
+		total += price
+	})
+
+	console.log("dueAmount-total", total);
+}
+
+
+cheapestItem(){
+
+	let cheapest = {
+		price: Infinity,
+		name: ''
+
+	};
+
+	this.menu.forEach(el => {
+
+	if(el.price < cheapest.price)
+	 {cheapest.price =el.price
+	}
+	console.log("cheapestItem", cheapest.name, 'with price', cheapest.price);
+
+	})
+}
+
+
+drinksOnly(){
+
+	const drinks = this.menu.filter(el => el.type === 'drink')
+	console.log(drinks);
+	
+}
+
+}
+
+
+	
+
+const menu = [
+  {
+    name: "Ale",
+    type: "drink",
+    price: 3,
+  },
+  {
+    name: "Curry",
+    type: "food",
+    price: 7,
+  },
+  {
+    name: "Espresso",
+    type: "drink",
+    price: 2,
+  },
+  {
+    name: "Fish",
+    type: "food",
+    price: 7,
+  },
+];
+
+
+
+const redShrimp = new CoffeeShop('redShrimp', menu,[]) 
+
+console.log(redShrimp);
+
+redShrimp.addOrder("Fish");
+redShrimp.addOrder("Ale");
+redShrimp.drinksOnly();
+redShrimp.fulfillOrder();
+redShrimp.cheapestItem();
+redShrimp.addOrder("Espresso")
+redShrimp.listOrders()
+redShrimp.dueAmount()
+console.log(redShrimp);
